@@ -1,0 +1,8 @@
+%fieldset
+  %h5 Section
+  = f.label :title
+  = f.text_field :title
+  = link_to_remove_association 'remove section', f
+  = f.fields_for :subsections do |subsection|
+    = link_to_add_association 'add subsection', f, :subsections
+    = render 'subsection_fields', f: subsection

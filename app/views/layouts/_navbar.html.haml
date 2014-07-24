@@ -1,0 +1,20 @@
+.navbar.navbar-default.navbar-fixed
+  .container
+    .navbar-header
+      %button.navbar-toggle{'data-target' => '.navbar-collapse', 'data-toggle' => 'collapse', type: 'button'}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to 'Books Manager', root_path, class: 'navbar-brand'
+    .collapse.navbar-collapse
+      %ul.navbar-global.nav.navbar-nav.navbar-right
+        %li.active
+          %a.navbar-link{href: '#'} Home
+        %li
+          = link_to 'Books', books_path
+      %form.navbar-form.navbar-right.visible-xs{role: 'search'}
+        .input-group
+          %input.form-control{placeholder: 'Search', type: 'text'}/
+          %span.input-group-btn
+            %button.btn.btn-info{type: 'button'} Search!

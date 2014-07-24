@@ -1,0 +1,8 @@
+%fieldset
+  %h5 Content
+  = f.label :content
+  = f.text_field :content
+  = link_to 'remove content', '#', class: 'remove_fields'
+  = f.fields_for :sections do |section|
+    = link_to_add_association 'add section', f, :sections
+    = render 'section_fields', f: section

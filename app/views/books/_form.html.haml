@@ -1,0 +1,20 @@
+= form_for @book, html: {role: 'form', class: 'form-horizontal'} do |f|
+  - if @book.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@book.errors.count, 'error')} prohibited this book from being saved:"
+      %ul
+        - @book.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    .input-group
+      %span.input-group-addon
+        = icon 'bookmark-o'
+      = f.text_field :title, class: 'form-control', placeholder: 'Title'
+  .form-group
+    %h4 Contents
+    = link_to_add_association 'add content', f, :contents
+    = f.fields_for :contents do |content|
+      = render 'content_fields', f: content
+  .form-group
+    = f.submit 'Save', class: 'btn btn-success btn-sm'
