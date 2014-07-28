@@ -1,5 +1,5 @@
 %fieldset
-  %h5 Subsection
-  = f.label :title
-  = f.text_field :title
-  = link_to_remove_association 'remove subsection', f
+  .form-group.form-inline.tab-2
+    = f.text_field :title, class: 'form-control', placeholder: 'Title'
+    = link_to_remove_association f, class: 'btn btn-sm btn-danger' do
+      = icon 'ban'

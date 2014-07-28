@@ -1,8 +1,14 @@
 %fieldset
-  %h5 Section
-  = f.label :title
-  = f.text_field :title
-  = link_to_remove_association 'remove section', f
-  = f.fields_for :subsections do |subsection|
-    = link_to_add_association 'add subsection', f, :subsections
-    = render 'subsection_fields', f: subsection
+  .tab-1
+    .form-group.form-inline
+      = f.text_field :title, class: 'form-control', placeholder: 'Title'
+      = link_to_remove_association f, class: 'btn btn-sm btn-danger' do
+        = icon 'ban'
+    .form-group
+      %h5 Subsections
+    .form-group
+      = f.fields_for :subsections do |subsection|
+        = render 'subsection_fields', f: subsection
+    .form-group
+      = link_to_add_association f, :subsections, class: 'btn btn-sm btn-primary' do
+        = icon 'plus'

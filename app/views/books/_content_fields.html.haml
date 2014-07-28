@@ -1,8 +1,21 @@
-%fieldset
-  %h5 Content
-  = f.label :content
-  = f.text_field :content
-  = link_to 'remove content', '#', class: 'remove_fields'
-  = f.fields_for :sections do |section|
-    = link_to_add_association 'add section', f, :sections
-    = render 'section_fields', f: section
+.col-sm-6
+  %fieldset
+    .panel.panel-default
+      .panel-heading.panel-handle.panel-colorize
+        .panel-title
+      .panel-body-collapse.collapse.in
+        .panel-body
+          .form-group.form-inline
+            = f.text_field :content, class: 'form-control', placeholder: 'Content'
+            = link_to_remove_association f, class: 'btn btn-sm btn-danger' do
+              = icon 'ban'
+          .form-group
+            %h5 Sections
+          .form-group
+            = f.fields_for :sections do |section|
+              = render 'section_fields', f: section
+          .form-group
+            = link_to_add_association f, :sections, class: 'btn btn-sm btn-primary' do
+              %span
+                = icon 'plus'
+                Section

@@ -1,7 +1,8 @@
-= form_for @book, html: {role: 'form', class: 'form-horizontal'} do |f|
+= form_for @book, html: {role: 'form', class: 'form'} do |f|
   - if @book.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@book.errors.count, 'error')} prohibited this book from being saved:"
+    .alert.alert-danger.alert-dismissable
+      %button.close{'aria-hidden' => 'true', 'data-dismiss' => 'alert', type: 'button'} ×
+      %h4= "#{pluralize(@book.errors.count, 'error')} prohibited this book from being saved:"
       %ul
         - @book.errors.full_messages.each do |msg|
           %li= msg
@@ -11,10 +12,17 @@
       %span.input-group-addon
         = icon 'bookmark-o'
       = f.text_field :title, class: 'form-control', placeholder: 'Title'
+  %h4 Contents
   .form-group
-    %h4 Contents
-    = link_to_add_association 'add content', f, :contents
-    = f.fields_for :contents do |content|
-      = render 'content_fields', f: content
+    .row
+      = f.fields_for :contents do |content|
+        = render 'content_fields', f: content
   .form-group
-    = f.submit 'Save', class: 'btn btn-success btn-sm'
+    = link_to_add_association f, :contents, class: 'btn btn-default' do
+      %span
+        = icon 'plus'
+        Content
+    = f.submit class: 'btn btn-success' do
+      %span
+        = icon 'save'
+        Save

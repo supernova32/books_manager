@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   resources :books
-  resources :contents
+
+  get '/invoice' => 'books#invoice'
 
   root 'books#index'
 
